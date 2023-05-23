@@ -1,7 +1,9 @@
 import Link from 'next/link'
 import React from 'react'
+import { useSelector } from 'react-redux'
 
 const Navbar = () => {
+  const count = useSelector((state) => state.counter.value)
   return (
     <nav className='flex items-center justify-between px-16 w-full h-16 shadow '>
         <span className='text-2xl font-serif'>Redux Store</span>
@@ -9,7 +11,7 @@ const Navbar = () => {
             <li><Link href='/' >Home</Link></li>
             <li><Link href="/cart">Cart</Link></li>
             <div className='text-lg pl-5 font-mono '>
-            cart Item : 0
+            cart Item : {count}
            </div>
         </ul>
       
