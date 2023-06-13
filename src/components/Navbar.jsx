@@ -1,8 +1,13 @@
 import Link from 'next/link'
-import React from 'react'
 import { useSelector } from 'react-redux'
+import { useTheme } from 'next-themes';
+import { MdDarkMode,MdOutlineDarkMode } from 'react-icons/md';
 
 const Navbar = () => {
+  const { theme, setTheme } = useTheme();
+  const toggleTheme = () => {
+    setTheme(theme === 'light' ? 'dark' : 'light');
+  };
   const count = useSelector((state) => state.counter.value)
   return (
     <nav className='flex items-center justify-between px-16 w-full h-16 shadow '>
@@ -12,6 +17,11 @@ const Navbar = () => {
             <li><Link href="/cart">Cart</Link></li>
             <div className='text-lg pl-5 font-mono '>
             cart Item : {count}
+           </div>
+           <div onClick={toggleTheme} className='text-2xl cursor-pointer ' >
+            {
+              theme==='light' ? <MdDarkMode  />:<MdOutlineDarkMode />
+            }
            </div>
         </ul>
       
